@@ -1,5 +1,13 @@
 {
   "expo": {
+    "plugins": [
+      [
+        "@rnmapbox/maps",
+        {
+          "RNMapboxMapsDownloadToken": "sk.eyJ1IjoiZGZyZWR1ZGU0OCIsImEiOiJjbHNnaDY5YTIxbXo4Mmpxb3ZoczNid3duIn0.D7YgYcus56IQND7PT_Mx_Q"
+        }
+      ]
+    ],
     "name": "commutecycle",
     "slug": "commutecycle",
     "version": "1.0.0",
