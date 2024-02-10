@@ -4,7 +4,6 @@
  *
  * @format
  */
-
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
@@ -24,6 +23,10 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
+import Mapbox from '@rnmapbox/maps';
+// Mapbox.setAccessToken(<TOKEN>);
+
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -63,12 +66,17 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
+    <View style={styles.page}>
+      <View style={styles.container}>
+        <Mapbox.MapView style={styles.map} />
+      </View>
+    </View>
+    // <SafeAreaView style={backgroundStyle}>
+    //   <StatusBar
+    //     barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+    //     backgroundColor={backgroundStyle.backgroundColor}
+    //   />
+      /* <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
@@ -91,28 +99,46 @@ function App(): React.JSX.Element {
           </Section>
           <LearnMoreLinks />
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </ScrollView> */
+    // </SafeAreaView>
   );
 }
 
+// const styles = StyleSheet.create({
+//   sectionContainer: {
+//     marginTop: 32,
+//     paddingHorizontal: 24,
+//   },
+//   sectionTitle: {
+//     fontSize: 24,
+//     fontWeight: '600',
+//   },
+//   sectionDescription: {
+//     marginTop: 8,
+//     fontSize: 18,
+//     fontWeight: '400',
+//   },
+//   highlight: {
+//     fontWeight: '700',
+//   },
+//   map: {
+//     flex: 1
+//   }
+// });
+
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  page: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  container: {
+    height: 300,
+    width: 300,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
+  map: {
+    flex: 1
+  }
 });
 
 export default App;
