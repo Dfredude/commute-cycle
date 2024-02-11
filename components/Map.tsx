@@ -20,6 +20,12 @@ const Map = () => {
         rotateEnabled={true}
         >
         <MapCamera />
+        <Mapbox.PointAnnotation
+            id="pointAnnotation"
+            title='This is a marker'
+            coordinate={[-63.58233697511372, 44.64332781897539]}>
+            {/* <Mapbox.Callout title='Look! An annotation!' /> */}
+        </Mapbox.PointAnnotation>
       </Mapbox.MapView>
   );
 };
