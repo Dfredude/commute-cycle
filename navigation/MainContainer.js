@@ -20,26 +20,26 @@ function MainContainer() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName={homeName}
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-            let rn = route.name;
+        // initialRouteName={homeName}
+        // screenOptions={({ route }) => ({
+        //   tabBarIcon: ({ focused, color, size }) => {
+        //     let iconName;
+        //     let rn = route.name;
 
-            if (rn === homeName) {
-              iconName = focused ? 'circle-thin' : 'home-outline';
+        //     if (rn === homeName) {
+        //       iconName = focused ? 'circle-thin' : 'home-outline';
 
-            } else if (rn === detailsName) {
-              iconName = focused ? 'times' : 'person-circle';
+        //     } else if (rn === detailsName) {
+        //       iconName = focused ? 'times' : 'person-circle';
 
-            } else if (rn === settingsName) {
-              iconName = focused ? 'settings' : 'settings-outline';
-            }
+        //     } else if (rn === settingsName) {
+        //       iconName = focused ? 'settings' : 'settings-outline';
+        //     }
 
-            // You can return any component that you like here!
-            return <Icon name={iconName} size={size} color={color} />;
-          },
-        })}
+        //     // You can return any component that you like here!
+        //     return <Icon name={iconName} size={size} color={color} />;
+        //   },
+        // })}
         >
 
         
