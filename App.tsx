@@ -24,9 +24,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import Mapbox from '@rnmapbox/maps';
-// Mapbox.setAccessToken(<TOKEN>);
-
+import Map from './components/Map';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -66,17 +64,13 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <View style={styles.page}>
-      <View style={styles.container}>
-        <Mapbox.MapView style={styles.map} />
-      </View>
-    </View>
+    <Map />
     // <SafeAreaView style={backgroundStyle}>
     //   <StatusBar
     //     barStyle={isDarkMode ? 'light-content' : 'dark-content'}
     //     backgroundColor={backgroundStyle.backgroundColor}
     //   />
-      /* <ScrollView
+    /* <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
@@ -104,41 +98,23 @@ function App(): React.JSX.Element {
   );
 }
 
-// const styles = StyleSheet.create({
-//   sectionContainer: {
-//     marginTop: 32,
-//     paddingHorizontal: 24,
-//   },
-//   sectionTitle: {
-//     fontSize: 24,
-//     fontWeight: '600',
-//   },
-//   sectionDescription: {
-//     marginTop: 8,
-//     fontSize: 18,
-//     fontWeight: '400',
-//   },
-//   highlight: {
-//     fontWeight: '700',
-//   },
-//   map: {
-//     flex: 1
-//   }
-// });
-
 const styles = StyleSheet.create({
-  page: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
   },
-  container: {
-    height: 300,
-    width: 300,
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '600',
   },
-  map: {
-    flex: 1
-  }
+  sectionDescription: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '400',
+  },
+  highlight: {
+    fontWeight: '700',
+  },
 });
 
 export default App;
