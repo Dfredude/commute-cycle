@@ -5,6 +5,7 @@
  * @format
  */
 import React from 'react';
+import MainContainer from './navigation/MainContainer';
 import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
@@ -24,39 +25,37 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import Mapbox from '@rnmapbox/maps';
-// Mapbox.setAccessToken(<TOKEN>);
 
 
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+// function Section({children, title}: SectionProps): React.JSX.Element {
+//   const isDarkMode = useColorScheme() === 'dark';
+//   return (
+//     <View style={styles.sectionContainer}>
+//       <Text
+//         style={[
+//           styles.sectionTitle,
+//           {
+//             color: isDarkMode ? Colors.white : Colors.black,
+//           },
+//         ]}>
+//         {title}
+//       </Text>
+//       <Text
+//         style={[
+//           styles.sectionDescription,
+//           {
+//             color: isDarkMode ? Colors.light : Colors.dark,
+//           },
+//         ]}>
+//         {children}
+//       </Text>
+//     </View>
+//   );
+// }
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -65,12 +64,10 @@ function App(): React.JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  return (
-    <View style={styles.page}>
-      <View style={styles.container}>
-        <Mapbox.MapView style={styles.map} />
-      </View>
-    </View>
+  return (<>
+    
+    <MainContainer></MainContainer>
+    </>
     // <SafeAreaView style={backgroundStyle}>
     //   <StatusBar
     //     barStyle={isDarkMode ? 'light-content' : 'dark-content'}
@@ -126,19 +123,6 @@ function App(): React.JSX.Element {
 //   }
 // });
 
-const styles = StyleSheet.create({
-  page: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  container: {
-    height: 300,
-    width: 300,
-  },
-  map: {
-    flex: 1
-  }
-});
+
 
 export default App;
