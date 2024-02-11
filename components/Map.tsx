@@ -1,16 +1,30 @@
 import React, {useRef, useState, useEffect} from 'react';
-import Mapbox, {Camera, MarkerView} from '@rnmapbox/maps';
+import Mapbox, {Camera, MarkerView, Image} from '@rnmapbox/maps';
+import { View} from 'react-native';
 import {StyleSheet, Text} from 'react-native';
 import MapCamera from './MapCamera';
 
 Mapbox.setAccessToken("sk.eyJ1Ijoia2FuaXNoazAxIiwiYSI6ImNsc2d4endpZjFiOWsyaXBxNXlxbzJhc2IifQ.9ptlcm-JO-S6OBrA60acoQ");
 
 const Map = () => {
-  const Map = new Mapbox.MapView({
-    styleURL: Mapbox.StyleURL.Street,
-    zoomEnabled: true,
-    rotateEnabled: true,
-  });
+  // Initial region set to longitude: -63.58233697511372, latitude: 44.64332781897539
+  const initial_coordinates = [-63.58233697511372, 44.64332781897539]
+  const halifaxBoundingCoordinates = {
+    minLat: 44.62497756750548,
+    maxLat: 44.67407574190784,
+    minLon: -63.56606458532189,
+    maxLon: -63.643802022498804
+};
+  function generateRandomCoordinate(minLat, maxLat, minLon, maxLon) {
+    const lat = Math.random() * (maxLat - minLat) + minLat;
+    const lon = Math.random() * (maxLon - minLon) + minLon;
+    return [lon, lat];
+  }
+
+  const numberOfBicycles = 20;
+  const bicycleCoordinates = Array.from({ length: numberOfBicycles }, () =>
+      generateRandomCoordinate(halifaxBoundingCoordinates.minLat, halifaxBoundingCoordinates.maxLat, halifaxBoundingCoordinates.minLon, halifaxBoundingCoordinates.maxLon)
+  );
 
   return (
     <Mapbox.MapView
@@ -20,11 +34,25 @@ const Map = () => {
         rotateEnabled={true}
         >
         <MapCamera />
+        {
+          bicycleCoordinates.map((coordinate, index) => {
+            return (
+                <Mapbox.PointAnnotation
+                    key={index}
+                    id={`bicycle-${index}`}
+                    title='Cycle!'
+                    coordinate={coordinate}>
+                    <Mapbox.Callout title='Cycle' />
+                </Mapbox.PointAnnotation>
+            );
+          })
+        }
         <Mapbox.PointAnnotation
-            id="pointAnnotation"
-            title='This is a marker'
-            coordinate={[-63.58233697511372, 44.64332781897539]}>
-            {/* <Mapbox.Callout title='Look! An annotation!' /> */}
+            key='9090'
+            id="userAnnotation"
+            title="You"
+            coordinate={initial_coordinates}>
+            <Mapbox.Callout title={'You'}><Text>You</Text></Mapbox.Callout>
         </Mapbox.PointAnnotation>
       </Mapbox.MapView>
   );
